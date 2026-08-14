@@ -1,0 +1,13 @@
+# Local/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets and environment files - never publish these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12

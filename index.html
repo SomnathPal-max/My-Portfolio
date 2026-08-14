@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Somnath Pal — B.Tech CSE student, software developer, and builder." />
+    <meta name="theme-color" content="#0f172a" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Somnath Pal — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="preloader" aria-hidden="true">
+      <div class="preloader__mark">SP</div>
+      <div class="preloader__line"><span></span></div>
+      <span class="preloader__count">00</span>
+    </div>
+
+    <div class="cursor cursor--dot" aria-hidden="true"></div>
+    <div class="cursor cursor--ring" aria-hidden="true"></div>
+    <div class="scroll-indicator" aria-hidden="true"><span></span></div>
+    <canvas class="ambient-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header">
+      <a class="wordmark magnetic" href="#top" aria-label="Somnath Pal, home">SP<span>/dev</span></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#approach">Approach</a>
+      </nav>
+      <a class="header-cta magnetic" href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+        <i></i><i></i>
+      </button>
+    </header>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+      <a href="#about">About <span>01</span></a>
+      <a href="#work">Work <span>02</span></a>
+      <a href="#approach">Approach <span>03</span></a>
+      <a href="#contact">Contact <span>04</span></a>
+    </nav>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <p class="eyebrow hero__eyebrow reveal-up"><span class="pulse"></span> B.Tech CSE student · Open to internships</p>
+        <div class="hero__main">
+          <p class="hero__intro reveal-up">Hello, I’m</p>
+          <h1 class="hero__title" aria-label="Somnath Pal">
+            <span class="title-line"><span>Somnath</span></span>
+            <span class="title-line title-line--accent"><span>Pal<span class="title-dot">.</span></span></span>
+          </h1>
+          <div class="hero__side reveal-up">
+            <div class="hero__side-label"><span></span> Developer profile</div>
+            <p>Building reliable software with a strong foundation in Java, DSA, and full-stack development.</p>
+            <div class="hero__skills" aria-label="Core skills"><span>Java</span><span>DSA</span><span>TypeScript</span><span>Git</span></div>
+            <a class="text-link magnetic" href="#work">View selected projects <span>↓</span></a>
+          </div>
+        </div>
+        <div class="hero__bottom reveal-up">
+          <p>Scroll to explore</p>
+          <div class="hero__orbit" aria-hidden="true"><span>JAVA · DSA · AI · WEB · </span><b>⌘</b></div>
+          <p class="hero__location">Kolkata, West Bengal, India.</p>
+        </div>
+      </section>
+
+      <section class="statement section-shell" id="about">
+        <div class="section-index reveal-up">01 <span>/ About</span></div>
+        <div class="statement__content">
+          <p class="statement__lead split-lines">Building thoughtful software for <em>real-world</em> problems.</p>
+          <div class="statement__details reveal-up">
+            <p>I’m a Computer Science & Engineering student at JIS College of Engineering, building toward SDE and full-stack roles through Java, DSA, hackathons, and real-world projects.</p>
+            <div class="quick-facts" aria-label="Highlights">
+              <span><b>11</b>Public repositories</span><span><b>6+</b>National hackathons</span><span><b>2029</b>Expected graduation</span>
+            </div>
+            <a class="round-link magnetic" href="#contact" aria-label="Start a conversation">Get in touch <span>→</span></a>
+          </div>
+        </div>
+        <div class="marquee" aria-hidden="true"><div><span>Build · learn · ship · repeat</span><i>✳</i><span>Build · learn · ship · repeat</span><i>✳</i><span>Build · learn · ship · repeat</span><i>✳</i></div></div>
+      </section>
+
+      <section class="work section-shell" id="work">
+        <div class="section-heading">
+          <div class="section-index reveal-up">02 <span>/ Selected work</span></div>
+          <p class="section-note reveal-up">Projects built for real people,<br />real problems, and better systems.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project project--amber reveal-project">
+            <a href="https://law-shield.vercel.app" target="_blank" rel="noopener noreferrer" class="project__visual project__visual--amber magnetic-card" aria-label="Open LawShield">
+              <div class="cover cover--lawshield">
+                <div class="product-window product-window--lawshield">
+                  <div class="window-bar"><span></span><span></span><span></span><b>LawShield</b></div>
+                  <div class="law-ui"><small>SAFETY RESOURCE</small><strong>Know your rights.<br />Stay protected.</strong><i>Ask Legal Assistant <b>→</b></i><div class="law-ui__items"><span>Safety Laws</span><span>Emergency Help</span></div></div>
+                </div>
+                <span class="cover__type">01 / LEGAL ACCESS</span>
+              </div>
+              <span class="project__arrow">↗</span>
+            </a>
+            <div class="project__meta"><p>01 — TypeScript · AI</p><span>2026</span></div>
+            <h2>Law<em>Shield</em></h2>
+            <p class="project__description">A legal-awareness platform for women’s safety with a law library, AI legal assistant, smart search, document generator, and emergency resources.</p>
+          </article>
+
+          <article class="project project--violet reveal-project">
+            <a href="https://github.com/SomnathPal-max/SomSphere" target="_blank" rel="noopener noreferrer" class="project__visual project__visual--violet magnetic-card" aria-label="Open SomSphere on GitHub">
+              <div class="cover cover--somsphere">
+                <div class="product-window product-window--somsphere">
+                  <div class="window-bar"><span></span><span></span><span></span><b>SomSphere</b></div>
+                  <div class="sphere-ui"><div class="sphere-ui__side"><b>●</b><span></span><span></span><span></span></div><div class="sphere-ui__main"><small>STUDENT WORKSPACE</small><strong>Today’s focus</strong><i></i><i></i><i></i></div><div class="sphere-ui__avatar">SP</div></div>
+                </div>
+                <span class="cover__type">02 / STUDENT WORKSPACE</span>
+              </div>
+              <span class="project__arrow">↗</span>
+            </a>
+            <div class="project__meta"><p>02 — TypeScript</p><span>2026</span></div>
+            <h2>Som<em>Sphere</em></h2>
+            <p class="project__description">A connected student workspace for collaborative canvases, community chat, encrypted documents, PDF compilation, and custom real-time widgets.</p>
+          </article>
+
+          <article class="project project--ink reveal-project">
+            <a href="https://neuro-sort-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project__visual project__visual--ink magnetic-card" aria-label="Open NeuroSort AI">
+              <div class="cover cover--neuro">
+                <div class="product-window product-window--neuro">
+                  <div class="window-bar"><span></span><span></span><span></span><b>NeuroSort AI</b></div>
+                  <div class="neuro-ui"><div class="neuro-ui__header"><small>WORKSPACE ANALYSIS</small><b>87% organised</b></div><div class="neuro-ui__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="neuro-ui__files"><span>Research.pdf <b>High</b></span><span>Notes.docx <b>Medium</b></span></div></div>
+                </div>
+                <span class="cover__type">03 / INTELLIGENT ORGANISATION</span>
+              </div>
+              <span class="project__arrow">↗</span>
+            </a>
+            <div class="project__meta"><p>03 — TypeScript · AI</p><span>2026</span></div>
+            <h2>Neuro<em>Sort AI</em></h2>
+            <p class="project__description">An intelligent workspace system that categorises, prioritises, and manages files around content, urgency, and academic constraints.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="approach section-shell" id="approach">
+        <div class="section-index reveal-up">03 <span>/ Approach</span></div>
+        <div class="approach__header">
+          <h2 class="split-lines">A strong foundation<br />makes bigger ideas <em>possible.</em></h2>
+          <p class="reveal-up">Learning with intent, applying it quickly,<br />and improving with every build.</p>
+        </div>
+        <ol class="process-list">
+          <li class="reveal-up"><span>01</span><h3>Learn deeply</h3><p>Java and DSA, from arrays to dynamic programming.</p><b>↘</b></li>
+          <li class="reveal-up"><span>02</span><h3>Build usefully</h3><p>Full-stack projects designed around clear, human problems.</p><b>↘</b></li>
+          <li class="reveal-up"><span>03</span><h3>Keep shipping</h3><p>Hackathons, open-source practice, and every next iteration.</p><b>↘</b></li>
+        </ol>
+      </section>
+
+      <section class="contact section-shell" id="contact">
+        <div class="contact__glow"></div>
+        <p class="eyebrow reveal-up">04 / Open to internship opportunities</p>
+        <h2 class="contact__title split-lines">Let’s build<br /><em>what’s</em> next.</h2>
+        <a class="contact__button magnetic" href="mailto:somnathpalstudy@gmail.com">
+          <span>somnathpalstudy@gmail.com</span><b>↗</b>
+        </a>
+        <p class="contact__footnote reveal-up"><a href="https://www.linkedin.com/in/somnath-pal-7a21a1373/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p>© <span id="year"></span> Somnath Pal</p>
+      <p>Built with curiosity <span>✳</span></p>
+      <a href="#top" class="magnetic">Back to top ↑</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
