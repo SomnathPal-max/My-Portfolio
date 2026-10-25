@@ -1,6 +1,7 @@
 /* ==========================================================================
    SOMNATH PAL — PORTFOLIO INTERACTIONS & ADVANCED MOTION ENGINE
    Zero external dependencies. Pure vanilla ES6+ with strict security compliance.
+   Theme: Cherry & Alabaster Design System
    ========================================================================== */
 
 (function () {
@@ -65,18 +66,18 @@
   const heroCopyBtn = $('#hero-copy-email');
   if (heroCopyBtn) {
     heroCopyBtn.addEventListener('click', () => {
-      copyTextToClipboard('somnathpalstudy@gmail.com', 'Copied somnathpalstudy@gmail.com! ✨');
+      copyTextToClipboard('somnathpalstudy@gmail.com', 'Copied somnathpalstudy@gmail.com! 🍒');
     });
   }
 
   const contactCopyBtn = $('#copy-email-button');
   if (contactCopyBtn) {
     contactCopyBtn.addEventListener('click', () => {
-      copyTextToClipboard('somnathpalstudy@gmail.com', 'Email copied to clipboard! ✨');
+      copyTextToClipboard('somnathpalstudy@gmail.com', 'Email copied to clipboard! 🍒');
     });
   }
 
-  // 3. Theme Toggle (Dark / Light) with Persistence
+  // 3. Theme Toggle (Dark / Light) with Persistence: Cherry & Alabaster
   const themeToggle = $('#theme-toggle');
   const htmlRoot = document.documentElement;
 
@@ -89,7 +90,7 @@
     localStorage.setItem('sp_theme', theme);
     const metaThemeColor = $('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#090d16' : '#f8fafc');
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0e070b' : '#faf6f0');
     }
   }
 
@@ -162,8 +163,8 @@
 
     const statusSteps = [
       { at: 20, text: 'Loading core modules...' },
-      { at: 55, text: 'Initializing animations...' },
-      { at: 85, text: 'Mounting interface...' },
+      { at: 55, text: 'Initializing cherry aesthetic...' },
+      { at: 85, text: 'Mounting alabaster interface...' },
       { at: 100, text: 'Ready.' }
     ];
 
@@ -421,7 +422,7 @@
     });
   });
 
-  // 15. Interactive Developer Terminal
+  // 15. Interactive Developer Terminal: Cherry & Alabaster Theme
   const termInput = $('#terminal-input');
   const termHistory = $('#terminal-history');
   const termClearBtn = $('#terminal-clear-btn');
@@ -429,23 +430,23 @@
 
   const commands = {
     help: () => `
-      <span style="color:#58a6ff;">Available commands:</span><br/>
-      • <b style="color:#7ee787;">skills</b>    : Inspect programming languages, frameworks, tools<br/>
-      • <b style="color:#7ee787;">projects</b>  : View selected full-stack & AI projects<br/>
-      • <b style="color:#7ee787;">education</b> : Academic credentials & coursework at JISCE<br/>
-      • <b style="color:#7ee787;">contact</b>   : Direct email and social handles<br/>
-      • <b style="color:#7ee787;">sudo hire</b> : Instant evaluation mode for recruiters<br/>
-      • <b style="color:#7ee787;">clear</b>     : Clear console screen
+      <span style="color:#fb7185;">Available commands:</span><br/>
+      • <b style="color:#fecdd3;">skills</b>    : Inspect programming languages, frameworks, tools<br/>
+      • <b style="color:#fecdd3;">projects</b>  : View selected full-stack & AI projects<br/>
+      • <b style="color:#fecdd3;">education</b> : Academic credentials & coursework at JISCE<br/>
+      • <b style="color:#fecdd3;">contact</b>   : Direct email and social handles<br/>
+      • <b style="color:#fecdd3;">sudo hire</b> : Instant evaluation mode for recruiters<br/>
+      • <b style="color:#fecdd3;">clear</b>     : Clear console screen
     `,
     skills: () => `
-      <b style="color:#58a6ff;">Technical Skills &amp; Stack:</b><br/>
+      <b style="color:#fb7185;">Technical Skills &amp; Stack:</b><br/>
       • Languages: Java (OOP, Multithreading), TypeScript, JavaScript, Python, C/C++, SQL<br/>
       • Web &amp; Backend: React.js, Next.js, Node.js, Express, Tailwind CSS, REST APIs<br/>
       • AI &amp; Systems: LLM Integration, Voice Biometrics, Zero-Trust Offline AI, RAG<br/>
       • Core CS: Data Structures &amp; Algorithms, System Design, Operating Systems, DBMS
     `,
     projects: () => `
-      <b style="color:#58a6ff;">Featured Software Projects:</b><br/>
+      <b style="color:#fb7185;">Featured Software Projects:</b><br/>
       1. <b>LawShield</b>: Women's safety platform with AI legal assistant &amp; SOS (TypeScript/Next.js)<br/>
       2. <b>NeuroSort AI</b>: Intelligent workspace analysis &amp; file sorting system (Next.js/Algorithms)<br/>
       3. <b>VoiceShield</b>: Real-time AI voice-cloning fraud detection engine (Cybersecurity/AI)<br/>
@@ -454,22 +455,22 @@
       6. <b>SomSphere</b>: Real-time collaborative workspace with canvases &amp; encrypted PDF compiler
     `,
     education: () => `
-      <b style="color:#58a6ff;">Education &amp; Background:</b><br/>
+      <b style="color:#fb7185;">Education &amp; Background:</b><br/>
       • Degree: B.Tech in Computer Science &amp; Engineering (2025 — 2029)<br/>
       • Institution: JIS College of Engineering, Kolkata, West Bengal<br/>
       • Focus Areas: Data Structures, Algorithms, Software Engineering, Machine Learning
     `,
     contact: () => `
-      <b style="color:#58a6ff;">Contact Information:</b><br/>
-      • Email: <a href="mailto:somnathpalstudy@gmail.com" style="color:#7ee787;">somnathpalstudy@gmail.com</a><br/>
-      • GitHub: <a href="https://github.com/SomnathPal-max" target="_blank" style="color:#79c0ff;">github.com/SomnathPal-max</a><br/>
-      • LinkedIn: <a href="https://www.linkedin.com/in/somnath-pal-7a21a1373/" target="_blank" style="color:#79c0ff;">linkedin.com/in/somnath-pal-7a21a1373</a>
+      <b style="color:#fb7185;">Contact Information:</b><br/>
+      • Email: <a href="mailto:somnathpalstudy@gmail.com" style="color:#f43f5e; text-decoration:underline;">somnathpalstudy@gmail.com</a><br/>
+      • GitHub: <a href="https://github.com/SomnathPal-max" target="_blank" style="color:#fecdd3;">github.com/SomnathPal-max</a><br/>
+      • LinkedIn: <a href="https://www.linkedin.com/in/somnath-pal-7a21a1373/" target="_blank" style="color:#fecdd3;">linkedin.com/in/somnath-pal-7a21a1373</a>
     `,
     'sudo hire': () => `
-      <span style="color:#7ee787;">[ACCESS GRANTED]</span> 🚀<br/>
+      <span style="color:#f43f5e;">[ACCESS GRANTED]</span> 🍒<br/>
       Somnath Pal is actively seeking Software Development Engineer (SDE) internships.<br/>
       Ready to build reliable, high-performance systems with your team.<br/>
-      👉 Let's connect: <a href="mailto:somnathpalstudy@gmail.com" style="color:#58a6ff; text-decoration:underline;">somnathpalstudy@gmail.com</a>
+      👉 Let's connect: <a href="mailto:somnathpalstudy@gmail.com" style="color:#fb7185; text-decoration:underline;">somnathpalstudy@gmail.com</a>
     `,
     clear: () => {
       if (termHistory) termHistory.innerHTML = '';
@@ -497,7 +498,7 @@
     if (commands[cmd]) {
       outputBlock.innerHTML = commands[cmd]();
     } else {
-      outputBlock.innerHTML = `<span style="color:#ff7b72;">command not found: ${cmd}</span>. Type <b style="color:#7ee787;">help</b> for a list of commands.`;
+      outputBlock.innerHTML = `<span style="color:#fb7185;">command not found: ${cmd}</span>. Type <b style="color:#fecdd3;">help</b> for a list of commands.`;
     }
 
     termHistory.appendChild(outputBlock);
@@ -531,7 +532,7 @@
     });
   });
 
-  // 16. Enhanced Ambient Particle & Constellation Canvas
+  // 16. Enhanced Ambient Particle & Constellation Canvas: Cherry & Alabaster
   if (!prefersReducedMotion) {
     const canvas = $('.ambient-canvas');
     if (canvas) {
@@ -569,8 +570,9 @@
         const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark';
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-        const particleColor = isDark ? 'rgba(96, 165, 250, ' : 'rgba(37, 99, 235, ';
-        const lineColor = isDark ? 'rgba(59, 130, 246, ' : 'rgba(37, 99, 235, ';
+        // Cherry & Alabaster particles
+        const particleColor = isDark ? 'rgba(251, 113, 133, ' : 'rgba(190, 18, 60, ';
+        const lineColor = isDark ? 'rgba(225, 29, 72, ' : 'rgba(190, 18, 60, ';
 
         for (let i = 0; i < dots.length; i++) {
           const dot = dots[i];
@@ -590,12 +592,12 @@
             dot.y -= (dyMouse / distMouse) * 1.2;
           }
 
-          context.fillStyle = `${particleColor}0.45)`;
+          context.fillStyle = `${particleColor}0.5)`;
           context.beginPath();
           context.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
           context.fill();
 
-          // Connect nearby particles with subtle constellation lines
+          // Connect nearby particles with subtle cherry constellation lines
           for (let j = i + 1; j < dots.length; j++) {
             const dot2 = dots[j];
             const dx = dot.x - dot2.x;
@@ -603,7 +605,7 @@
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 85) {
-              const alpha = (1 - dist / 85) * (isDark ? 0.16 : 0.09);
+              const alpha = (1 - dist / 85) * (isDark ? 0.2 : 0.11);
               context.strokeStyle = `${lineColor}${alpha})`;
               context.lineWidth = 0.8;
               context.beginPath();
