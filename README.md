@@ -1,4 +1,4 @@
-# Somnath Pal — Interactive & Animated Developer Portfolio
+# Somnath Pal — Portfolio
 
 A modern, high-performance, and responsive developer portfolio for **Somnath Pal** (B.Tech CSE undergraduate at JIS College of Engineering, SDE & Full-Stack builder). Built with semantic HTML5, modern CSS3, and vanilla ES6+ with zero build steps or external JavaScript dependencies.
 
