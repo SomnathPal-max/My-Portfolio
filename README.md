@@ -1,4 +1,4 @@
-# Somnath Pal — animated portfolio
+# Somnath Pal — portfolio
 
 This is a self-contained portfolio site. Open `index.html` in any modern browser; there is no installation or build step.
 
