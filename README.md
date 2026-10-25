@@ -1,28 +1,70 @@
-# Somnath Pal — animated portfolio
+# Somnath Pal — Interactive & Animated Developer Portfolio
 
-This is a self-contained portfolio site. Open `index.html` in any modern browser; there is no installation or build step.
+A modern, high-performance, and responsive developer portfolio for **Somnath Pal** (B.Tech CSE undergraduate at JIS College of Engineering, SDE & Full-Stack builder). Built with semantic HTML5, modern CSS3, and vanilla ES6+ with zero build steps or external JavaScript dependencies.
 
-## Content included
+---
 
-The site is now populated from your supplied profile PDF and public GitHub profile: your B.Tech CSE status at JIS College of Engineering, core skills, internship focus, email, and three public projects (LawShield, SomSphere, and NeuroSort AI).
+## 🌟 Key Features & Sections
 
-Open `index.html` and update these areas:
+1. **Editorial & High-Impact Hero Section**:
+   - Status badge with live pulsing radar ring ("Open to SDE Internships").
+   - Dynamic real-time IST clock for Kolkata, India (`Asia/Kolkata` GMT+5:30).
+   - Animated typographic entrance with split-line stagger.
+   - Dynamic typewriter role cycler ("Full-Stack Developer", "Java & DSA Builder", "AI Systems Creator").
+   - Interactive profile card with avatar and 1-click email copy.
+   - Continuous rotating orbit badge ("JAVA · DSA · AI · FULLSTACK · ⌘") with scroll parallax.
 
-1. The hero’s eyebrow and short intro.
-2. The About section and quick-fact chips.
-3. Each card within `<section class="work">` — project name, type, year, description, and link.
-4. Your contact email and social links.
+2. **Expanded Technical Skills Matrix**:
+   - Categorized into 4 clear domains:
+     - ☕ **Languages & Core**: Java (OOP, multithreading), TypeScript, JavaScript, Python, C/C++, SQL.
+     - 🌐 **Web & Full-Stack**: React.js, Next.js, Node.js, Express, Tailwind CSS, REST APIs, WebSockets.
+     - 🤖 **AI & Systems**: LLM integration, Voice Fraud Detection, Zero-Trust Offline AI, RAG.
+     - 🛠️ **DevOps & Practices**: Git & GitHub, Linux/Bash, Vercel, Postman, Clean Architecture.
 
-The visual covers are entirely CSS, so the site works without images. To use project images later, replace the contents of each `.cover` element with an `<img>` tag and add `object-fit: cover` styling.
+3. **Curated Showcase of Real Projects**:
+   - Interactive Category Filter: "All Projects", "AI & Safety", "Full-Stack & Productivity".
+   - 6 Featured Projects with pure CSS responsive UI mockups, tags, Live Demo links, and GitHub links:
+     - **LawShield**: Women's legal awareness and personal safety platform with AI assistant.
+     - **NeuroSort AI**: Intelligent workspace analysis and file prioritization system.
+     - **VoiceShield**: Real-time AI voice-cloning fraud detection engine & dashboard.
+     - **RozgarSetu AI**: Trust-first employment navigator for government vacancies and MSMEs.
+     - **VaultSign AI**: Local zero-trust offline contract red-flag reviewer (runs with Wi-Fi off).
+     - **SomSphere**: Connected student workspace with collaborative canvases & encrypted PDF tools.
+   - **3D Card Perspective Tilt**: Interactive physics-based mouse-following tilt with specular reflection.
 
-## Included motion
+4. **Interactive Developer Console / Terminal**:
+   - macOS-style terminal window with command line prompt (`somnath@dev:~$`).
+   - Interactive commands: `skills`, `projects`, `education`, `contact`, `sudo hire`, `clear`.
+   - Clickable suggestion chips for mobile and quick exploration.
 
-- Intro loader and typographic entrance
-- Ambient particle field, cursor interaction, and scroll indicator
-- Scroll-triggered reveals, animation on project hover, and text marquee
-- Responsive mobile navigation
-- `prefers-reduced-motion` support for visitors who disable animation
+5. **Milestones & Hackathons Journey**:
+   - Vertical timeline featuring 6+ National Hackathons, B.Tech CSE at JIS College of Engineering (2025–2029), and 17+ public open-source repositories.
 
-## Security
+6. **Engineering Philosophy & Approach**:
+   - 3-stage process: Master Fundamentals, Build For Real Needs, Relentless Execution.
 
-The site includes a strict browser Content Security Policy and deployment-ready security headers for Vercel and Netlify/Cloudflare Pages. Read `SECURITY.md` before adding integrations, analytics, or a contact form.
+7. **Contact & Micro-Interactions**:
+   - Glowing mesh ambient background.
+   - 1-click clipboard copy button with animated slide-up toast notification.
+   - Direct mailto link with pre-populated subject.
+   - Verified GitHub and LinkedIn links.
+
+---
+
+## 🎨 Motion & Animations Included
+
+- **Preloader**: Dynamic percentage counter with easing, loading bar, and status phases.
+- **Ambient Constellation Canvas**: Drifting stardust particles that dynamically draw connection lines when proximate and subtly react to cursor movement.
+- **Custom Magnetic Cursor**: Dot + ring with smooth lerp tracking, text preview over projects ("View"), and hover scale over interactive elements.
+- **True Magnetic Physics**: Smooth attraction on buttons and navigation links.
+- **3D Card Tilt & Glare**: Mouse-tracking perspective transform on project cards.
+- **Dark / Light Mode Switcher**: Smooth animated transition with state saved to `localStorage`.
+- **Viewport Scroll Reveals**: Staggered scroll animations via `IntersectionObserver`.
+- **Accessibility**: Full respect for `prefers-reduced-motion` across all animations and transitions.
+
+---
+
+## 🔒 Security & Deployment
+
+- **Strict Content Security Policy (CSP)** configured in `index.html`, `vercel.json`, and `_headers`.
+- Zero external build steps — 100% compatible with Vercel, Netlify, GitHub Pages, and Cloudflare Pages.

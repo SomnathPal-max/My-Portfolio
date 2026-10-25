@@ -1,173 +1,828 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Somnath Pal — B.Tech CSE student, software developer, and builder." />
-    <meta name="theme-color" content="#0f172a" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
+    <meta name="description" content="Somnath Pal — B.Tech CSE student at JISCE, Full-Stack Developer, and Java/DSA builder. Explore projects, skills, and interactive console." />
+    <meta name="theme-color" content="#090d16" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://avatars.githubusercontent.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Somnath Pal — Portfolio</title>
+    <title>Somnath Pal — Software Developer & B.Tech CSE Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- Preloader -->
     <div class="preloader" aria-hidden="true">
-      <div class="preloader__mark">SP</div>
-      <div class="preloader__line"><span></span></div>
-      <span class="preloader__count">00</span>
+      <div class="preloader__inner">
+        <div class="preloader__mark">SP<span>/dev</span></div>
+        <div class="preloader__status" id="preloader-status">Initializing environment...</div>
+        <div class="preloader__bar">
+          <div class="preloader__line"><span></span></div>
+          <span class="preloader__count">00</span>
+        </div>
+      </div>
     </div>
 
+    <!-- Custom Cursor -->
     <div class="cursor cursor--dot" aria-hidden="true"></div>
-    <div class="cursor cursor--ring" aria-hidden="true"></div>
+    <div class="cursor cursor--ring" aria-hidden="true"><span class="cursor__text"></span></div>
+    
+    <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator" aria-hidden="true"><span></span></div>
+    
+    <!-- Ambient Canvas -->
     <canvas class="ambient-canvas" aria-hidden="true"></canvas>
 
+    <!-- Global Toast Container -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span class="toast__icon">✓</span>
+      <span class="toast__message" id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <!-- Header Navigation -->
     <header class="site-header">
-      <a class="wordmark magnetic" href="#top" aria-label="Somnath Pal, home">SP<span>/dev</span></a>
+      <div class="header-left">
+        <a class="wordmark magnetic" href="#top" aria-label="Somnath Pal, home">SP<span>/dev</span></a>
+        <div class="header-status-badge" aria-label="Availability status">
+          <span class="status-pulse"></span>
+          <span class="status-text">Available for Internships</span>
+        </div>
+      </div>
+
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#approach">Approach</a>
+        <a href="#about" class="nav-link" data-nav="about">About</a>
+        <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+        <a href="#work" class="nav-link" data-nav="work">Work</a>
+        <a href="#terminal" class="nav-link" data-nav="terminal">Console</a>
+        <a href="#journey" class="nav-link" data-nav="journey">Journey</a>
+        <a href="#approach" class="nav-link" data-nav="approach">Approach</a>
+        <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
       </nav>
-      <a class="header-cta magnetic" href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
-        <i></i><i></i>
-      </button>
+
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle magnetic" id="theme-toggle" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="theme-toggle__icon icon-moon">🌙</span>
+          <span class="theme-toggle__icon icon-sun">☀️</span>
+        </button>
+
+        <!-- Terminal Quick Action -->
+        <a class="terminal-btn magnetic" href="#terminal" aria-label="Open Interactive Terminal" title="Developer Terminal">
+          <span>&gt;_</span>
+        </a>
+
+        <!-- GitHub External CTA -->
+        <a class="header-cta magnetic" href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer">
+          <svg class="gh-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+          <span class="cta-arrow">↗</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+          <i></i><i></i><i></i>
+        </button>
+      </div>
     </header>
 
+    <!-- Mobile Navigation Drawer -->
     <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
-      <a href="#about">About <span>01</span></a>
-      <a href="#work">Work <span>02</span></a>
-      <a href="#approach">Approach <span>03</span></a>
-      <a href="#contact">Contact <span>04</span></a>
+      <div class="mobile-nav__links">
+        <a href="#about">About <span>01</span></a>
+        <a href="#skills">Skills <span>02</span></a>
+        <a href="#work">Work <span>03</span></a>
+        <a href="#terminal">Console <span>04</span></a>
+        <a href="#journey">Journey <span>05</span></a>
+        <a href="#approach">Approach <span>06</span></a>
+        <a href="#contact">Contact <span>07</span></a>
+      </div>
+      <div class="mobile-nav__footer">
+        <div class="mobile-nav__status">
+          <span class="pulse"></span> Open to SDE Internships
+        </div>
+        <div class="mobile-nav__links-sub">
+          <a href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/somnath-pal-7a21a1373/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
     </nav>
 
     <main id="top">
+      <!-- HERO SECTION -->
       <section class="hero section-shell">
-        <p class="eyebrow hero__eyebrow reveal-up"><span class="pulse"></span> B.Tech CSE student · Open to internships</p>
-        <div class="hero__main">
-          <p class="hero__intro reveal-up">Hello, I’m</p>
-          <h1 class="hero__title" aria-label="Somnath Pal">
-            <span class="title-line"><span>Somnath</span></span>
-            <span class="title-line title-line--accent"><span>Pal<span class="title-dot">.</span></span></span>
-          </h1>
-          <div class="hero__side reveal-up">
-            <div class="hero__side-label"><span></span> Developer profile</div>
-            <p>Building reliable software with a strong foundation in Java, DSA, and full-stack development.</p>
-            <div class="hero__skills" aria-label="Core skills"><span>Java</span><span>DSA</span><span>TypeScript</span><span>Git</span></div>
-            <a class="text-link magnetic" href="#work">View selected projects <span>↓</span></a>
+        <div class="hero__eyebrow-wrap reveal-up">
+          <p class="eyebrow hero__eyebrow">
+            <span class="pulse"></span>
+            <span>B.Tech CSE @ JISCE · SDE &amp; Full-Stack Builder</span>
+          </p>
+          <div class="hero__status-pill">
+            <span class="status-clock" id="live-clock">Kolkata, India</span>
           </div>
         </div>
+
+        <div class="hero__main">
+          <div class="hero__copy">
+            <p class="hero__intro reveal-up">Hello, I’m</p>
+            <h1 class="hero__title" aria-label="Somnath Pal">
+              <span class="title-line"><span>Somnath</span></span>
+              <span class="title-line title-line--accent"><span>Pal<span class="title-dot">.</span></span></span>
+            </h1>
+
+            <div class="hero__typewriter reveal-up" aria-live="polite">
+              <span class="typewriter-prefix">&gt; </span>
+              <span class="typewriter-text" id="typewriter-text">Full-Stack Developer</span>
+              <span class="typewriter-cursor">_</span>
+            </div>
+          </div>
+
+          <!-- Hero Profile Card -->
+          <div class="hero__side reveal-up magnetic-card">
+            <div class="hero__profile-badge">
+              <div class="avatar-wrap">
+                <img src="https://avatars.githubusercontent.com/u/227027383?v=4" alt="Somnath Pal" class="avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="avatar-fallback">SP</div>
+              </div>
+              <div class="profile-info">
+                <strong>Somnath Pal</strong>
+                <span>JIS College of Engineering · 2029</span>
+              </div>
+            </div>
+
+            <p class="hero__side-bio">Building robust web platforms, automated AI tools, and algorithmic systems with a solid grounding in Java and full-stack development.</p>
+
+            <div class="hero__skills" aria-label="Core technologies">
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">DSA</span>
+              <span class="skill-pill">TypeScript</span>
+              <span class="skill-pill">Next.js</span>
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Git</span>
+            </div>
+
+            <div class="hero__actions">
+              <a class="text-link magnetic" href="#work">Explore selected work <span>↓</span></a>
+              <button class="hero__copy-btn magnetic" id="hero-copy-email" type="button" aria-label="Copy email address" title="Copy email address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>somnathpalstudy@gmail.com</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="hero__bottom reveal-up">
-          <p>Scroll to explore</p>
-          <div class="hero__orbit" aria-hidden="true"><span>JAVA · DSA · AI · WEB · </span><b>⌘</b></div>
-          <p class="hero__location">Kolkata, West Bengal, India.</p>
+          <div class="hero__scroll-prompt">
+            <span class="mouse-icon"><i></i></span>
+            <p>Scroll to explore</p>
+          </div>
+          <div class="hero__orbit" aria-hidden="true">
+            <span>JAVA · DSA · AI · FULLSTACK · </span>
+            <b>⌘</b>
+          </div>
+          <div class="hero__location">
+            <span class="loc-pin">📍</span>
+            <span>Kolkata, West Bengal, India</span>
+          </div>
         </div>
       </section>
 
+      <!-- ABOUT SECTION -->
       <section class="statement section-shell" id="about">
         <div class="section-index reveal-up">01 <span>/ About</span></div>
         <div class="statement__content">
-          <p class="statement__lead split-lines">Building thoughtful software for <em>real-world</em> problems.</p>
+          <h2 class="statement__lead split-lines">Engineering reliable software with <em>depth</em>, speed, and real-world impact.</h2>
           <div class="statement__details reveal-up">
-            <p>I’m a Computer Science & Engineering student at JIS College of Engineering, building toward SDE and full-stack roles through Java, DSA, hackathons, and real-world projects.</p>
-            <div class="quick-facts" aria-label="Highlights">
-              <span><b>11</b>Public repositories</span><span><b>6+</b>National hackathons</span><span><b>2029</b>Expected graduation</span>
+            <p class="statement__para">
+              I’m a Computer Science &amp; Engineering undergraduate at <strong>JIS College of Engineering</strong>, focused on backend architectures, full-stack web applications, and problem-solving through Data Structures &amp; Algorithms.
+            </p>
+            <p class="statement__para">
+              From developing women’s safety platforms (LawShield) and privacy-first contract review systems (VaultSign) to high-speed file organization engines (NeuroSort AI), I turn concepts into deployed, production-grade applications that prioritize accessibility and performance.
+            </p>
+
+            <div class="quick-facts" aria-label="Highlights and metrics">
+              <div class="quick-fact-card">
+                <b>17+</b>
+                <span>Public Repositories</span>
+              </div>
+              <div class="quick-fact-card">
+                <b>6+</b>
+                <span>National Hackathons</span>
+              </div>
+              <div class="quick-fact-card">
+                <b>100%</b>
+                <span>Zero-Trust Offline AI</span>
+              </div>
+              <div class="quick-fact-card">
+                <b>2029</b>
+                <span>Expected B.Tech CSE</span>
+              </div>
             </div>
-            <a class="round-link magnetic" href="#contact" aria-label="Start a conversation">Get in touch <span>→</span></a>
+
+            <div class="statement__actions">
+              <a class="round-link magnetic" href="#contact" aria-label="Start a conversation">
+                <span>Start a conversation</span>
+                <span class="arrow">→</span>
+              </a>
+              <a class="ghost-link magnetic" href="#skills">View Technical Stack ↓</a>
+            </div>
           </div>
         </div>
-        <div class="marquee" aria-hidden="true"><div><span>Build · learn · ship · repeat</span><i>✳</i><span>Build · learn · ship · repeat</span><i>✳</i><span>Build · learn · ship · repeat</span><i>✳</i></div></div>
+
+        <div class="marquee" aria-hidden="true">
+          <div>
+            <span>JAVA · DATA STRUCTURES · TYPESCRIPT · REACT · NEXT.JS · PYTHON · AI INTEGRATION · SYSTEM DESIGN</span>
+            <i>✳</i>
+            <span>BUILD · SHIP · ITERATE · SOLVE REAL PROBLEMS · OPEN SOURCE</span>
+            <i>✳</i>
+            <span>JAVA · DATA STRUCTURES · TYPESCRIPT · REACT · NEXT.JS · PYTHON · AI INTEGRATION · SYSTEM DESIGN</span>
+            <i>✳</i>
+            <span>BUILD · SHIP · ITERATE · SOLVE REAL PROBLEMS · OPEN SOURCE</span>
+            <i>✳</i>
+          </div>
+        </div>
       </section>
 
+      <!-- SKILLS SECTION -->
+      <section class="skills-section section-shell" id="skills">
+        <div class="section-heading">
+          <div class="section-index reveal-up">02 <span>/ Technical Skills</span></div>
+          <p class="section-note reveal-up">Strong foundations in algorithms &amp; OOP,<br />combined with modern full-stack workflows.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skill Category 1 -->
+          <div class="skill-card reveal-up">
+            <div class="skill-card__header">
+              <div class="skill-card__icon">☕</div>
+              <div>
+                <h3>Languages &amp; Core</h3>
+                <p>Fundamental programming and typing</p>
+              </div>
+            </div>
+            <ul class="skill-card__list">
+              <li><span class="skill-name">Java</span> <span class="skill-level">Core, OOP, Multithreading</span></li>
+              <li><span class="skill-name">TypeScript</span> <span class="skill-level">Type Safety, ESNext</span></li>
+              <li><span class="skill-name">JavaScript</span> <span class="skill-level">Async/Await, DOM, Node</span></li>
+              <li><span class="skill-name">Python</span> <span class="skill-level">Scripting, AI tooling, Automation</span></li>
+              <li><span class="skill-name">C / C++</span> <span class="skill-level">Memory fundamentals, DSA</span></li>
+              <li><span class="skill-name">SQL</span> <span class="skill-level">Queries, Normalization</span></li>
+            </ul>
+          </div>
+
+          <!-- Skill Category 2 -->
+          <div class="skill-card reveal-up">
+            <div class="skill-card__header">
+              <div class="skill-card__icon">🌐</div>
+              <div>
+                <h3>Web &amp; Full-Stack</h3>
+                <p>Client applications &amp; backend services</p>
+              </div>
+            </div>
+            <ul class="skill-card__list">
+              <li><span class="skill-name">React.js</span> <span class="skill-level">Hooks, State, Component Arch</span></li>
+              <li><span class="skill-name">Next.js</span> <span class="skill-level">App Router, SSR, API Routes</span></li>
+              <li><span class="skill-name">Node.js / Express</span> <span class="skill-level">RESTful APIs, Middleware</span></li>
+              <li><span class="skill-name">Tailwind CSS</span> <span class="skill-level">Responsive Design, Utility UI</span></li>
+              <li><span class="skill-name">HTML5 &amp; CSS3</span> <span class="skill-level">Semantic Web, Animations</span></li>
+              <li><span class="skill-name">WebSockets</span> <span class="skill-level">Real-time messaging, Canvas sync</span></li>
+            </ul>
+          </div>
+
+          <!-- Skill Category 3 -->
+          <div class="skill-card reveal-up">
+            <div class="skill-card__header">
+              <div class="skill-card__icon">🤖</div>
+              <div>
+                <h3>AI &amp; Systems</h3>
+                <p>Intelligent workflows &amp; edge computing</p>
+              </div>
+            </div>
+            <ul class="skill-card__list">
+              <li><span class="skill-name">AI Integration</span> <span class="skill-level">Gemini, OpenAI, Anthropic APIs</span></li>
+              <li><span class="skill-name">RAG &amp; Vector Search</span> <span class="skill-level">Knowledge retrieval, Embeddings</span></li>
+              <li><span class="skill-name">Voice Fraud Detection</span> <span class="skill-level">Synthetic audio analysis</span></li>
+              <li><span class="skill-name">Zero-Trust AI</span> <span class="skill-level">Local execution, Wi-Fi off privacy</span></li>
+              <li><span class="skill-name">Streamlit / Python UI</span> <span class="skill-level">Rapid ML dashboards</span></li>
+              <li><span class="skill-name">NLP &amp; Text Processing</span> <span class="skill-level">Semantic classification</span></li>
+            </ul>
+          </div>
+
+          <!-- Skill Category 4 -->
+          <div class="skill-card reveal-up">
+            <div class="skill-card__header">
+              <div class="skill-card__icon">🛠️</div>
+              <div>
+                <h3>DevOps &amp; Practices</h3>
+                <p>Development workflow &amp; architecture</p>
+              </div>
+            </div>
+            <ul class="skill-card__list">
+              <li><span class="skill-name">Git &amp; GitHub</span> <span class="skill-level">Branching, PRs, Versioning</span></li>
+              <li><span class="skill-name">Data Structures &amp; Algo</span> <span class="skill-level">Trees, Graphs, DP, Sorting</span></li>
+              <li><span class="skill-name">Linux / Bash</span> <span class="skill-level">CLI tools, shell automation</span></li>
+              <li><span class="skill-name">Vercel &amp; Deployment</span> <span class="skill-level">CI/CD, Edge Network, CSP</span></li>
+              <li><span class="skill-name">Postman</span> <span class="skill-level">API Testing &amp; Mocking</span></li>
+              <li><span class="skill-name">Object-Oriented Design</span> <span class="skill-level">SOLID principles, Clean Code</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="skills-highlight-bar reveal-up">
+          <div class="highlight-item">
+            <span class="highlight-bullet">⚡</span>
+            <span><strong>Core Focus:</strong> SDE Internship Preparation · Advanced Data Structures &amp; Java Development</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-bullet">🛡️</span>
+            <span><strong>Philosophy:</strong> Security by design, accessible user interfaces, clean documented code</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SELECTED WORK SECTION -->
       <section class="work section-shell" id="work">
         <div class="section-heading">
-          <div class="section-index reveal-up">02 <span>/ Selected work</span></div>
-          <p class="section-note reveal-up">Projects built for real people,<br />real problems, and better systems.</p>
+          <div class="section-index reveal-up">03 <span>/ Selected Work</span></div>
+          <p class="section-note reveal-up">Real-world applications built for safety,<br />productivity, and intelligent automation.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="projects-filter reveal-up" role="tablist" aria-label="Filter projects">
+          <button class="filter-btn is-active magnetic" data-filter="all" role="tab" aria-selected="true">All Projects <sup>(6)</sup></button>
+          <button class="filter-btn magnetic" data-filter="ai" role="tab" aria-selected="false">AI &amp; Safety <sup>(3)</sup></button>
+          <button class="filter-btn magnetic" data-filter="web" role="tab" aria-selected="false">Full-Stack &amp; Productivity <sup>(3)</sup></button>
         </div>
 
         <div class="projects">
-          <article class="project project--amber reveal-project">
-            <a href="https://law-shield.vercel.app" target="_blank" rel="noopener noreferrer" class="project__visual project__visual--amber magnetic-card" aria-label="Open LawShield">
+          <!-- Project 1: LawShield -->
+          <article class="project project--amber reveal-project" data-category="ai">
+            <div class="project__visual project__visual--amber magnetic-card" tabindex="0">
               <div class="cover cover--lawshield">
                 <div class="product-window product-window--lawshield">
-                  <div class="window-bar"><span></span><span></span><span></span><b>LawShield</b></div>
-                  <div class="law-ui"><small>SAFETY RESOURCE</small><strong>Know your rights.<br />Stay protected.</strong><i>Ask Legal Assistant <b>→</b></i><div class="law-ui__items"><span>Safety Laws</span><span>Emergency Help</span></div></div>
+                  <div class="window-bar">
+                    <span></span><span></span><span></span>
+                    <b>LawShield v2.4</b>
+                  </div>
+                  <div class="law-ui">
+                    <div class="law-ui__badge">LEGAL SAFETY ASSISTANT</div>
+                    <strong>Know your rights.<br />Stay protected.</strong>
+                    <div class="law-ui__search">
+                      <span>Ask AI: "What are my workplace rights?"</span>
+                      <b>→</b>
+                    </div>
+                    <div class="law-ui__items">
+                      <span>Safety Laws</span>
+                      <span>Emergency SOS</span>
+                      <span>Legal Aid</span>
+                      <span>Doc Generator</span>
+                    </div>
+                  </div>
                 </div>
-                <span class="cover__type">01 / LEGAL ACCESS</span>
+                <span class="cover__type">01 / LEGAL AWARENESS &amp; SAFETY</span>
               </div>
-              <span class="project__arrow">↗</span>
-            </a>
-            <div class="project__meta"><p>01 — TypeScript · AI</p><span>2026</span></div>
+              <div class="project__quick-links">
+                <a href="https://frontend-two-inky-64.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="Live Demo">Live Demo ↗</a>
+                <a href="https://github.com/SomnathPal-max/LawShield" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="GitHub Repository">Code ↗</a>
+              </div>
+            </div>
+            <div class="project__meta">
+              <p>01 — TypeScript · AI · Safety Platform</p>
+              <span>2026</span>
+            </div>
             <h2>Law<em>Shield</em></h2>
-            <p class="project__description">A legal-awareness platform for women’s safety with a law library, AI legal assistant, smart search, document generator, and emergency resources.</p>
+            <p class="project__description">A legal awareness and emergency assistance platform built for women in India, featuring an AI legal assistant, smart IPC law query engine, automated document generation, and instant safety resources.</p>
+            <div class="project__tags">
+              <span>TypeScript</span><span>AI Assistant</span><span>Next.js</span><span>Legal Tech</span>
+            </div>
+            <div class="project__links">
+              <a href="https://frontend-two-inky-64.vercel.app" target="_blank" rel="noopener noreferrer" class="project-action-link">Launch Live App <span>↗</span></a>
+              <a href="https://github.com/SomnathPal-max/LawShield" target="_blank" rel="noopener noreferrer" class="project-action-link project-action-link--ghost">Source Code <span>↗</span></a>
+            </div>
           </article>
 
-          <article class="project project--violet reveal-project">
-            <a href="https://github.com/SomnathPal-max/SomSphere" target="_blank" rel="noopener noreferrer" class="project__visual project__visual--violet magnetic-card" aria-label="Open SomSphere on GitHub">
-              <div class="cover cover--somsphere">
-                <div class="product-window product-window--somsphere">
-                  <div class="window-bar"><span></span><span></span><span></span><b>SomSphere</b></div>
-                  <div class="sphere-ui"><div class="sphere-ui__side"><b>●</b><span></span><span></span><span></span></div><div class="sphere-ui__main"><small>STUDENT WORKSPACE</small><strong>Today’s focus</strong><i></i><i></i><i></i></div><div class="sphere-ui__avatar">SP</div></div>
-                </div>
-                <span class="cover__type">02 / STUDENT WORKSPACE</span>
-              </div>
-              <span class="project__arrow">↗</span>
-            </a>
-            <div class="project__meta"><p>02 — TypeScript</p><span>2026</span></div>
-            <h2>Som<em>Sphere</em></h2>
-            <p class="project__description">A connected student workspace for collaborative canvases, community chat, encrypted documents, PDF compilation, and custom real-time widgets.</p>
-          </article>
-
-          <article class="project project--ink reveal-project">
-            <a href="https://neuro-sort-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project__visual project__visual--ink magnetic-card" aria-label="Open NeuroSort AI">
+          <!-- Project 2: NeuroSort AI -->
+          <article class="project project--ink reveal-project" data-category="ai">
+            <div class="project__visual project__visual--ink magnetic-card" tabindex="0">
               <div class="cover cover--neuro">
                 <div class="product-window product-window--neuro">
-                  <div class="window-bar"><span></span><span></span><span></span><b>NeuroSort AI</b></div>
-                  <div class="neuro-ui"><div class="neuro-ui__header"><small>WORKSPACE ANALYSIS</small><b>87% organised</b></div><div class="neuro-ui__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="neuro-ui__files"><span>Research.pdf <b>High</b></span><span>Notes.docx <b>Medium</b></span></div></div>
+                  <div class="window-bar">
+                    <span></span><span></span><span></span>
+                    <b>NeuroSort Engine</b>
+                  </div>
+                  <div class="neuro-ui">
+                    <div class="neuro-ui__header">
+                      <small>WORKSPACE ANALYSIS</small>
+                      <b>87% Organized</b>
+                    </div>
+                    <div class="neuro-ui__chart">
+                      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                    <div class="neuro-ui__files">
+                      <span>Research_Paper_Final.pdf <b>Urgent · Priority 1</b></span>
+                      <span>Algorithm_Notes.docx <b>Medium Priority</b></span>
+                      <span>Project_Spec_v3.ts <b>High Priority</b></span>
+                    </div>
+                  </div>
                 </div>
-                <span class="cover__type">03 / INTELLIGENT ORGANISATION</span>
+                <span class="cover__type">02 / INTELLIGENT ASSET MANAGEMENT</span>
               </div>
-              <span class="project__arrow">↗</span>
-            </a>
-            <div class="project__meta"><p>03 — TypeScript · AI</p><span>2026</span></div>
+              <div class="project__quick-links">
+                <a href="https://neuro-sort-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="Live Demo">Live Demo ↗</a>
+                <a href="https://github.com/SomnathPal-max/NeuroSort-AI" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="GitHub Repository">Code ↗</a>
+              </div>
+            </div>
+            <div class="project__meta">
+              <p>02 — TypeScript · Next.js · Sorting Algorithms</p>
+              <span>2026</span>
+            </div>
             <h2>Neuro<em>Sort AI</em></h2>
-            <p class="project__description">An intelligent workspace system that categorises, prioritises, and manages files around content, urgency, and academic constraints.</p>
+            <p class="project__description">An intelligent workspace system that classifies, prioritizes, and manages digital assets based on content analysis, deadline urgency, and academic constraints using customized sorting algorithms.</p>
+            <div class="project__tags">
+              <span>TypeScript</span><span>Algorithms</span><span>File Analysis</span><span>Next.js</span>
+            </div>
+            <div class="project__links">
+              <a href="https://neuro-sort-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project-action-link">Launch Live App <span>↗</span></a>
+              <a href="https://github.com/SomnathPal-max/NeuroSort-AI" target="_blank" rel="noopener noreferrer" class="project-action-link project-action-link--ghost">Source Code <span>↗</span></a>
+            </div>
+          </article>
+
+          <!-- Project 3: VoiceShield -->
+          <article class="project project--violet reveal-project" data-category="ai">
+            <div class="project__visual project__visual--violet magnetic-card" tabindex="0">
+              <div class="cover cover--voice">
+                <div class="product-window product-window--voice">
+                  <div class="window-bar">
+                    <span></span><span></span><span></span>
+                    <b>VoiceShield Sentinel</b>
+                  </div>
+                  <div class="voice-ui">
+                    <div class="voice-ui__header">
+                      <small>BIOMETRIC DEFENSE</small>
+                      <span class="voice-status">● Live Detection</span>
+                    </div>
+                    <div class="voice-ui__waveform">
+                      <span style="height: 45%;"></span><span style="height: 75%;"></span><span style="height: 95%;"></span><span style="height: 60%;"></span><span style="height: 85%;"></span><span style="height: 35%;"></span><span style="height: 70%;"></span><span style="height: 90%;"></span><span style="height: 50%;"></span>
+                    </div>
+                    <div class="voice-ui__metric">
+                      <div class="metric-row">
+                        <span>Synthetic Probability:</span>
+                        <b class="metric-warn">94.2% Deepfake Detected</b>
+                      </div>
+                      <div class="metric-bar"><div style="width: 94%;"></div></div>
+                    </div>
+                  </div>
+                </div>
+                <span class="cover__type">03 / REAL-TIME VOICE FRAUD DEFENSE</span>
+              </div>
+              <div class="project__quick-links">
+                <a href="https://voice-shield-demo.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="Live Demo">Live Demo ↗</a>
+                <a href="https://github.com/SomnathPal-max/VoiceShield-demo" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="GitHub Repository">Code ↗</a>
+              </div>
+            </div>
+            <div class="project__meta">
+              <p>03 — TypeScript · Audio AI · Cybersecurity</p>
+              <span>2026</span>
+            </div>
+            <h2>Voice<em>Shield</em></h2>
+            <p class="project__description">Interactive prototype dashboard for a real-time AI voice-cloning fraud detection engine designed to analyze synthetic vocal frequencies and prevent financial impersonation scams.</p>
+            <div class="project__tags">
+              <span>Cybersecurity</span><span>Audio AI</span><span>Deepfake Detection</span><span>TypeScript</span>
+            </div>
+            <div class="project__links">
+              <a href="https://voice-shield-demo.vercel.app" target="_blank" rel="noopener noreferrer" class="project-action-link">Launch Live App <span>↗</span></a>
+              <a href="https://github.com/SomnathPal-max/VoiceShield-demo" target="_blank" rel="noopener noreferrer" class="project-action-link project-action-link--ghost">Source Code <span>↗</span></a>
+            </div>
+          </article>
+
+          <!-- Project 4: RozgarSetu AI -->
+          <article class="project project--cyan reveal-project" data-category="web">
+            <div class="project__visual project__visual--cyan magnetic-card" tabindex="0">
+              <div class="cover cover--rozgar">
+                <div class="product-window product-window--rozgar">
+                  <div class="window-bar">
+                    <span></span><span></span><span></span>
+                    <b>RozgarSetu Mobile Web</b>
+                  </div>
+                  <div class="rozgar-ui">
+                    <div class="rozgar-ui__badge">VERIFIED OPPORTUNITIES</div>
+                    <strong>Zero-Scam Career Navigator</strong>
+                    <div class="rozgar-ui__listing">
+                      <div class="job-item">
+                        <span>Central Govt Vacancy</span>
+                        <small>Direct Official Portal ↗ · Verified</small>
+                      </div>
+                      <div class="job-item">
+                        <span>MSME Tech Apprenticeship</span>
+                        <small>Local District · Stipend Verified</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="cover__type">04 / INCLUSIVE EMPLOYMENT</span>
+              </div>
+              <div class="project__quick-links">
+                <a href="https://rozgar-setu-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="Live Demo">Live Demo ↗</a>
+                <a href="https://github.com/SomnathPal-max/RozgarSetu_AI" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="GitHub Repository">Code ↗</a>
+              </div>
+            </div>
+            <div class="project__meta">
+              <p>04 — TypeScript · Mobile-First · Civic Tech</p>
+              <span>2026</span>
+            </div>
+            <h2>Rozgar<em>Setu AI</em></h2>
+            <p class="project__description">A mobile-first employment navigation platform that matches job seekers with verified government vacancies and local MSME opportunities, competing on transparency, date auditing, and direct portal verification.</p>
+            <div class="project__tags">
+              <span>TypeScript</span><span>Civic Tech</span><span>Mobile UX</span><span>Verification</span>
+            </div>
+            <div class="project__links">
+              <a href="https://rozgar-setu-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project-action-link">Launch Live App <span>↗</span></a>
+              <a href="https://github.com/SomnathPal-max/RozgarSetu_AI" target="_blank" rel="noopener noreferrer" class="project-action-link project-action-link--ghost">Source Code <span>↗</span></a>
+            </div>
+          </article>
+
+          <!-- Project 5: VaultSign AI -->
+          <article class="project project--emerald reveal-project" data-category="web">
+            <div class="project__visual project__visual--emerald magnetic-card" tabindex="0">
+              <div class="cover cover--vault">
+                <div class="product-window product-window--vault">
+                  <div class="window-bar">
+                    <span></span><span></span><span></span>
+                    <b>VaultSign 100% Offline</b>
+                  </div>
+                  <div class="vault-ui">
+                    <div class="vault-ui__shield">
+                      <span class="shield-icon">🔒</span>
+                      <b>Zero-Trust Sandbox · Wi-Fi Disabled</b>
+                    </div>
+                    <div class="vault-ui__analysis">
+                      <div class="vault-clause">
+                        <span class="tag-red">Red Flag</span>
+                        <p>Clause 14.2: Uncapped Indemnity</p>
+                      </div>
+                      <div class="vault-clause">
+                        <span class="tag-amber">Caution</span>
+                        <p>Clause 8.1: IP Transfer Before Payment</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="cover__type">05 / ZERO-TRUST CONTRACT AUDITOR</span>
+              </div>
+              <div class="project__quick-links">
+                <a href="https://vaultsign-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="Live Demo">Live Demo ↗</a>
+                <a href="https://github.com/SomnathPal-max/VaultSign-AI" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="GitHub Repository">Code ↗</a>
+              </div>
+            </div>
+            <div class="project__meta">
+              <p>05 — Python · Local AI · Zero-Trust Security</p>
+              <span>2026</span>
+            </div>
+            <h2>Vault<em>Sign AI</em></h2>
+            <p class="project__description">A local, zero-trust contract red-flag reviewer for freelancers that operates entirely offline. Contracts never leave the client device, auditing hazardous clauses and payment contingencies without cloud exposure.</p>
+            <div class="project__tags">
+              <span>Python</span><span>Zero-Trust</span><span>Legal Tech</span><span>Privacy</span>
+            </div>
+            <div class="project__links">
+              <a href="https://vaultsign-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="project-action-link">Launch Live App <span>↗</span></a>
+              <a href="https://github.com/SomnathPal-max/VaultSign-AI" target="_blank" rel="noopener noreferrer" class="project-action-link project-action-link--ghost">Source Code <span>↗</span></a>
+            </div>
+          </article>
+
+          <!-- Project 6: SomSphere -->
+          <article class="project project--violet reveal-project" data-category="web">
+            <div class="project__visual project__visual--violet magnetic-card" tabindex="0">
+              <div class="cover cover--somsphere">
+                <div class="product-window product-window--somsphere">
+                  <div class="window-bar">
+                    <span></span><span></span><span></span>
+                    <b>SomSphere Workspace</b>
+                  </div>
+                  <div class="sphere-ui">
+                    <div class="sphere-ui__side">
+                      <b>●</b>
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="sphere-ui__main">
+                      <small>STUDENT WORKSPACE</small>
+                      <strong>Today’s Focus &amp; Collaboration</strong>
+                      <i></i><i></i><i></i>
+                    </div>
+                    <div class="sphere-ui__avatar">SP</div>
+                  </div>
+                </div>
+                <span class="cover__type">06 / COLLABORATIVE CANVAS</span>
+              </div>
+              <div class="project__quick-links">
+                <a href="https://github.com/SomnathPal-max/SomSphere" target="_blank" rel="noopener noreferrer" class="quick-link-btn" title="GitHub Repository">Code ↗</a>
+              </div>
+            </div>
+            <div class="project__meta">
+              <p>06 — TypeScript · Real-Time Canvas · WebSockets</p>
+              <span>2026</span>
+            </div>
+            <h2>Som<em>Sphere</em></h2>
+            <p class="project__description">A connected student workspace featuring infinite collaborative whiteboard canvases, community chat hubs, encrypted document storage, PDF compilation generators, and real-time custom widgets.</p>
+            <div class="project__tags">
+              <span>TypeScript</span><span>WebSockets</span><span>Canvas</span><span>Full-Stack</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/SomnathPal-max/SomSphere" target="_blank" rel="noopener noreferrer" class="project-action-link">Explore on GitHub <span>↗</span></a>
+            </div>
           </article>
         </div>
       </section>
 
+      <!-- INTERACTIVE TERMINAL SECTION -->
+      <section class="terminal-section section-shell" id="terminal">
+        <div class="section-heading">
+          <div class="section-index reveal-up">04 <span>/ Interactive Console</span></div>
+          <p class="section-note reveal-up">Prefer the command line? Run commands<br />to inspect my background and projects.</p>
+        </div>
+
+        <div class="terminal-window reveal-up">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <div class="terminal-title">somnath@portfolio:~ (zsh)</div>
+            <div class="terminal-actions">
+              <button class="terminal-copy-btn" id="terminal-clear-btn" type="button" title="Clear console">clear</button>
+            </div>
+          </div>
+
+          <div class="terminal-body" id="terminal-output">
+            <div class="terminal-row">
+              <span class="terminal-system">Somnath Pal Developer Shell [Version 2.4.0]</span>
+            </div>
+            <div class="terminal-row">
+              <span class="terminal-system">Type or click a command below to explore:</span>
+            </div>
+            <div class="terminal-shortcuts" aria-label="Suggested terminal commands">
+              <button class="term-chip" data-cmd="help">help</button>
+              <button class="term-chip" data-cmd="skills">skills</button>
+              <button class="term-chip" data-cmd="projects">projects</button>
+              <button class="term-chip" data-cmd="education">education</button>
+              <button class="term-chip" data-cmd="contact">contact</button>
+              <button class="term-chip" data-cmd="sudo hire">sudo hire</button>
+            </div>
+            <div id="terminal-history"></div>
+            <div class="terminal-input-row">
+              <span class="terminal-prompt">somnath@dev:~$</span>
+              <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal input command" placeholder="type a command (e.g. 'skills', 'projects')..." />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY & HACKATHONS SECTION -->
+      <section class="journey-section section-shell" id="journey">
+        <div class="section-heading">
+          <div class="section-index reveal-up">05 <span>/ Journey &amp; Milestones</span></div>
+          <p class="section-note reveal-up">Continuous learning, rapid prototyping,<br />and competitive hackathon experience.</p>
+        </div>
+
+        <div class="timeline">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item reveal-up">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 — Present</div>
+              <h3>B.Tech in Computer Science &amp; Engineering</h3>
+              <p class="timeline-org">JIS College of Engineering · Kolkata, West Bengal</p>
+              <p class="timeline-desc">
+                Engaged in deep coursework covering Data Structures &amp; Algorithms, Object-Oriented Programming, Database Management Systems, Computer Networks, and Discrete Mathematics. Consistently building practical projects alongside theory.
+              </p>
+              <div class="timeline-badges">
+                <span>Java &amp; DSA</span><span>Operating Systems</span><span>DBMS</span><span>Algorithms</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item reveal-up">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 — 2026</div>
+              <h3>National Level Hackathons (6+)</h3>
+              <p class="timeline-org">Smart India Hackathon &amp; National Competitions</p>
+              <p class="timeline-desc">
+                Competed in 6+ national level hackathons, architecting and building end-to-end solutions within 24 to 36-hour sprint windows. Developed high-impact solutions for civic safety, fraud detection, and localized employment discovery.
+              </p>
+              <div class="timeline-badges">
+                <span>Fast Prototyping</span><span>Team Collaboration</span><span>Full-Stack Architecture</span><span>Pitching</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item reveal-up">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 — Present</div>
+              <h3>17+ Open-Source Projects &amp; Software Tools</h3>
+              <p class="timeline-org">GitHub Community · SomnathPal-max</p>
+              <p class="timeline-desc">
+                Authored 17+ public repositories spanning offline AI review utilities (VaultSign), voice biometric security (VoiceShield), legal tech (LawShield), and autonomous bug reproducing agents (ChronoLens-SWE).
+              </p>
+              <div class="timeline-badges">
+                <span>Open Source</span><span>API Development</span><span>CI/CD</span><span>Documentation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- APPROACH SECTION -->
       <section class="approach section-shell" id="approach">
-        <div class="section-index reveal-up">03 <span>/ Approach</span></div>
+        <div class="section-index reveal-up">06 <span>/ Approach</span></div>
         <div class="approach__header">
-          <h2 class="split-lines">A strong foundation<br />makes bigger ideas <em>possible.</em></h2>
-          <p class="reveal-up">Learning with intent, applying it quickly,<br />and improving with every build.</p>
+          <h2 class="split-lines">A strong foundation makes bigger ideas <em>possible.</em></h2>
+          <p class="reveal-up">Learning with intent, applying it rapidly,<br />and improving with every deployed iteration.</p>
         </div>
         <ol class="process-list">
-          <li class="reveal-up"><span>01</span><h3>Learn deeply</h3><p>Java and DSA, from arrays to dynamic programming.</p><b>↘</b></li>
-          <li class="reveal-up"><span>02</span><h3>Build usefully</h3><p>Full-stack projects designed around clear, human problems.</p><b>↘</b></li>
-          <li class="reveal-up"><span>03</span><h3>Keep shipping</h3><p>Hackathons, open-source practice, and every next iteration.</p><b>↘</b></li>
+          <li class="reveal-up">
+            <span>01</span>
+            <h3>Master Fundamentals</h3>
+            <p>Deep immersion in Java, DSA, time/space complexity analysis, and modular object-oriented architecture.</p>
+            <b>↘</b>
+          </li>
+          <li class="reveal-up">
+            <span>02</span>
+            <h3>Build For Real Needs</h3>
+            <p>Designing full-stack platforms centered around concrete human problems — from safety and privacy to productivity.</p>
+            <b>↘</b>
+          </li>
+          <li class="reveal-up">
+            <span>03</span>
+            <h3>Relentless Execution</h3>
+            <p>High-tempo hackathon sprints, open-source rigor, feedback loops, and shipping production-ready web apps.</p>
+            <b>↘</b>
+          </li>
         </ol>
       </section>
 
+      <!-- CONTACT SECTION -->
       <section class="contact section-shell" id="contact">
         <div class="contact__glow"></div>
-        <p class="eyebrow reveal-up">04 / Open to internship opportunities</p>
+        <p class="eyebrow reveal-up">07 / Open to internship opportunities</p>
         <h2 class="contact__title split-lines">Let’s build<br /><em>what’s</em> next.</h2>
-        <a class="contact__button magnetic" href="mailto:somnathpalstudy@gmail.com">
-          <span>somnathpalstudy@gmail.com</span><b>↗</b>
-        </a>
-        <p class="contact__footnote reveal-up"><a href="https://www.linkedin.com/in/somnath-pal-7a21a1373/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+        <p class="contact__subtitle reveal-up">
+          I’m actively looking for Software Development Engineer (SDE) internships and collaborative opportunities where I can contribute to high-impact systems.
+        </p>
+
+        <div class="contact__button-group reveal-up">
+          <button class="contact__button magnetic" id="copy-email-button" type="button" aria-label="Copy Somnath's email address">
+            <span class="btn-text">somnathpalstudy@gmail.com</span>
+            <span class="btn-action">Copy 📋</span>
+          </button>
+          <a class="contact__secondary-btn magnetic" href="mailto:somnathpalstudy@gmail.com?subject=Internship%20Inquiry%20-%20Somnath%20Pal" aria-label="Compose direct email">
+            <span>Send Direct Email</span>
+            <b>↗</b>
+          </a>
+        </div>
+
+        <div class="contact__socials reveal-up">
+          <a href="https://github.com/SomnathPal-max" target="_blank" rel="noopener noreferrer" class="social-link magnetic">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/somnath-pal-7a21a1373/" target="_blank" rel="noopener noreferrer" class="social-link magnetic">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <div class="location-chip">
+            <span class="pulse"></span>
+            <span>Kolkata, WB, India (GMT+5:30)</span>
+          </div>
+        </div>
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer section-shell">
-      <p>© <span id="year"></span> Somnath Pal</p>
-      <p>Built with curiosity <span>✳</span></p>
-      <a href="#top" class="magnetic">Back to top ↑</a>
+      <div class="footer-left">
+        <p>© <span id="year"></span> Somnath Pal · JIS College of Engineering</p>
+      </div>
+      <div class="footer-center">
+        <p>Engineered with precision &amp; curiosity <span>✳</span></p>
+      </div>
+      <div class="footer-right">
+        <a href="#top" class="back-to-top magnetic">Back to top ↑</a>
+      </div>
     </footer>
 
     <script src="script.js"></script>
